@@ -1,4 +1,4 @@
-(function() {
+/*(function() {
 'use strict';
 
 angular.module('NarrowItDownApp', [])
@@ -103,17 +103,6 @@ function MenuSearchService($http) {
 
 
       var foundItems = [];
-      /*
-      if (items[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0) {
-         foundItems.push(items[i]);
-       }
-       */
-
-          for (var i = 0; i < found.length; i++) {
-
-
-          }
-
           for (var i = 0; i < found.length; i++) {
             if (found[i].description.toLowerCase().match("\\b"+searchTerm.toLowerCase()+"\\b") !== null) {
               console.log("Found at : ( "+ i + " )"+ ",and the object is : ", found[i] );
@@ -129,4 +118,5 @@ function MenuSearchService($http) {
 }
 
 }
-)();
+)();*/
+!function(){"use strict";function e(e,n,t,o){e.$watch("list.found",function(e,t){void 0!==e?n.find("div.message").slideDown(1e3):n.find("div.message").slideUp(1e3)})}function n(){var e=this;e.isEmpty=function(){return null!=e.found&&0===e.found.length}}function t(e){var n=this;n.searchTerm="",n.narrowIt=function(){""!==n.searchTerm?e.getMatchedMenuItems(n.searchTerm).then(function(e){n.found=e}).catch(function(e){console.log("Something went wrong",e)}):n.found=[]},n.removeItem=function(e){n.found.splice(e,1)}}function o(e){this.getMatchedMenuItems=function(n){return e({method:"GET",url:"https://davids-restaurant.herokuapp.com/menu_items.json"}).then(function(e){for(var t=e.data.menu_items,o=[],r=0;r<t.length;r++);for(r=0;r<t.length;r++)null!==t[r].description.toLowerCase().match("\\b"+n.toLowerCase()+"\\b")&&(console.log("Found at : ( "+r+" ),and the object is : ",t[r]),o.push(t[r]));return o})}}angular.module("NarrowItDownApp",[]).controller("NarrowItDownController",t).service("MenuSearchService",o).directive("foundItems",function(){return{templateUrl:"loader/foundItems.html",link:e,scope:{found:"<",onRemove:"&"},controller:n,controllerAs:"list",bindToController:!0}}),t.$inject=["MenuSearchService"],o.$inject=["$http"]}();
