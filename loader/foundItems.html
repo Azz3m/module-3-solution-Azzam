@@ -1,0 +1,11 @@
+<div class="message loader ">
+  <h1>Result</h1><br />
+  <div class="foundFontError" ng-if="list.isEmpty()"> Nothing found</div>
+
+    <ul>
+      <li ng-repeat="item in list.found">
+      <span class="foundFont">{{item.name}}, {{item.short_name}}, {{item.description}}</span>
+        <button ng-click="list.onRemove({index: $index});">Don't want this one!</button>
+      </li>
+    </ul>
+</div>
